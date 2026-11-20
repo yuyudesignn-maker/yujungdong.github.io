@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yujung Dong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, gallery-like; the work does the talking
+   IDEA: a printed portfolio laid flat — white page, small captions, big images
+   PICTURE: the project images themselves, edge to edge in a two/three column grid
+   COLOUR and TYPE: white ground, near-black ink, grey captions; Inter at small sizes
+   LAYOUT: name left / Work · About right; 3-col index; project = 2-col image pairs + caption row */
+:root{color-scheme:light;--bg:#fff;--ink:#111;--mute:#6b6b6b;--line:#e6e6e6;--gap:clamp(10px,1.25vw,24px);--pad:clamp(14px,1.7vw,32px)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,'Noto Sans KR',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img,video{display:block;width:100%;height:auto}
+header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);background:rgba(255,255,255,.92);backdrop-filter:blur(8px)}
+header .name{font-weight:500}
+header nav{display:flex;gap:22px}
+header nav a{padding:6px 0;color:var(--mute);transition:color .2s}
+header nav a:hover,header nav a.on{color:var(--ink)}
+main{padding:8px var(--pad) 80px}
+.view{animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.view,.rev{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}}
+/* index */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--gap)*2) var(--gap)}
+.card .thumb{overflow:hidden;aspect-ratio:1.37;background:#f2f2f2}
+.card img{height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover img{transform:scale(1.035)}
+.card .cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px}
+.card .cap span:last-child{color:var(--mute)}
+/* project */
+.blk{margin-top:var(--gap)}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.pair>*{overflow:hidden;background:#f2f2f2}
+.pair img{height:100%;object-fit:cover}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);margin:clamp(28px,4vw,56px) 0 clamp(36px,5vw,72px)}
+.meta h1{font-size:14px;font-weight:500;margin:0 0 4px}
+.meta .cat{color:var(--mute)}
+.meta .txt p{margin:0 0 1em;max-width:62ch;font-size:15px;line-height:1.5}
+.banner{background:#d0102a;color:#fff;text-align:center;padding:18px 24px;font-size:clamp(14px,1.3vw,18px);line-height:1.4}
+.car{position:relative;background:#000;aspect-ratio:1.42;overflow:hidden}
+.car .tr{display:flex;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.car .tr img{flex:0 0 100%;height:100%;object-fit:contain}
+.car button{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:18px;cursor:pointer}
+.car button:hover{background:rgba(255,255,255,.25)}
+.car .p{left:14px}.car .n{right:14px}
+.car .dots{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#fff;font-size:12px;opacity:.7}
+.next{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:clamp(48px,7vw,100px);padding-top:18px}
+.next a{font-size:clamp(20px,2.4vw,32px);font-weight:500;letter-spacing:-.01em}
+.next span{color:var(--mute)}
+.note{color:var(--mute);font-size:12px;margin-top:8px}
+.rev{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rev.in{opacity:1;transform:none}
+/* keyboard demo */
+.demo{background:#000;color:#fff;padding:clamp(18px,2.6vw,40px)}
+.demo .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#aaa;margin-bottom:14px}
+.demo .top b{color:#fff;font-weight:500}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:clamp(18px,3vw,40px)}
+.steps div{font-size:12px;font-weight:600;letter-spacing:.02em}
+.steps output{display:block;margin-top:8px;min-height:24px;font-weight:400;font-size:15px;word-break:break-all;font-family:Inter,'Noto Sans KR',sans-serif}
+.steps output svg{width:15px;height:15px;margin-right:4px;vertical-align:-2px}
+.kbw{position:relative;width:100%;overflow-x:auto;overflow-y:hidden}
+.kb{position:absolute;left:0;top:0;width:1842px;height:500px;transform-origin:0 0}
+.k{position:absolute;width:128px;height:144px;border:1.6px solid #fff;border-radius:17px;background:#000;color:#fff;cursor:pointer;padding:0;font:inherit;transition:background .12s,color .12s}
+.k .l{position:absolute;left:15px;top:12px;font-size:31px}
+.k .j{position:absolute;left:16px;top:94px;font-size:22px;font-family:'Noto Sans KR',sans-serif}
+.k svg{position:absolute;left:68px;top:12px;width:44px;height:44px;overflow:visible;transition:transform .2s}
+.k.on{background:#fff;color:#000}.k.on svg *{stroke:#000}.k.on svg .f{fill:#000}.k.on svg{transform:scale(1.25)}
+.k:focus-visible{outline:2px solid #6cf;outline-offset:3px}
+.trace{display:flex;flex-wrap:wrap;gap:10px 14px;min-height:64px;margin-top:clamp(18px,3vw,40px);padding-top:18px;border-top:1px solid #333;align-items:center}
+.trace svg{width:clamp(28px,3vw,44px);height:clamp(28px,3vw,44px);animation:pop .35s cubic-bezier(.2,.9,.3,1.4) both}
+.trace i{width:clamp(14px,1.5vw,22px)}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.demo .hint{color:#777;font-size:12px;margin-top:14px}
+/* about */
+.about{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);padding-top:clamp(24px,6vw,96px)}
+.about .big{grid-column:span 2;font-size:clamp(20px,2.3vw,30px);line-height:1.3;letter-spacing:-.01em;max-width:28ch}
+.about dl{margin:0;display:grid;gap:18px}
+.about dt{color:var(--mute);font-size:12px;margin-bottom:2px}
+.about dd{margin:0}
+.about dd a{border-bottom:1px solid var(--line)}
+footer{display:flex;justify-content:space-between;padding:20px var(--pad);color:var(--mute);font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about{grid-template-columns:1fr}.about .big{grid-column:auto}}
+@media(max-width:600px){.grid,.pair,.meta{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}header nav{gap:16px}.car{aspect-ratio:1.2}}
+</style>
+</head>
+<body>
+<header><a class="name" href="#work">Yujung Dong</a><nav><a href="#work" id="nw">Work</a><a href="#about" id="na">About</a></nav></header>
+<main id="app"></main>
+<footer><span>© Yujung Dong</span><a href="#work">Back to top ↑</a></footer>
+<script>
+{
+/* =========================================================
+   ✏️ 여기만 고치면 사이트 내용이 바뀌어요 (CONTENT)
+   - 프로젝트 순서 = 아래 목록 순서
+   - 이미지 파일은 assets 폴더에 넣고 이름만 적으면 돼요
+   ========================================================= */
+const SITE={
+  name:'Yujung Dong',
+  intro:'Graphic and interaction designer working across editorial design, exhibition graphics and language systems.',
+  email:'hello@example.com',          // ← 실제 이메일로 바꿔주세요
+  instagram:'',                       // ← 예: 'yujung.design'
+  location:'London'
+};
+const PROJECTS=[
+ {id:'glow-archives',title:'Glow Archives',year:'2025',cover:'glow-tote.jpg',category:'Editorial Design, Exhibition Graphics',
+  text:['A visual archive tracing how make-up culture in Korea changed from the 1950s to the 1990s. I researched material from the period, including cosmetics adverts and packaging, and interviewed people about their own memories of make-up.',
+        'I edited and designed the book, arranging the material chronologically to bring out the character of each decade. As readers turn the pages, they can follow changing make-up styles alongside the stories of those who experienced them. The project grew from the book to include a poster series, an exhibition map and a T-shirt.'],
+  blocks:[{pair:['glow-eye.jpg','glow-poster-wall.jpg']},{meta:1},{pair:['glow-book-cover.jpg','glow-book-open.jpg']},
+          {carousel:['glow-spread-1.jpg','glow-spread-2.jpg']},
+          {banner:'Five decades of Korean beauty, reflecting the desires, identities and everyday lives of women. An archive of changing ideals.'},
+          {pair:['glow-tote-park.jpg','glow-tshirt.jpg']},{img:'glow-posters.jpg'}]},
+ {id:'the-form-of-traces',title:'The Form of Traces',year:'2026',cover:'fot-cover.jpg',category:'Language System Design, Interaction Design',
+  text:['A language system that turns the Korean alphabet into traces. Each key on a standard keyboard is paired with a jamo and a mark, so a word is broken down, mapped and written as a line of symbols.',
+        'On the website, every keystroke presses its mark into a field of snow. Backspace erases it; Esc smooths the snow over. What we write leaves a trace — and traces can disappear.'],
+  blocks:[{video:'fot-motion.mp4',poster:'fot-motion-poster.jpg'},{meta:1},{demo:1},{img:'fot-system.jpg'},
+          {video:'fot-mockup.mp4',poster:'fot-mockup-first.jpg'},{img:'fot-book-tin.jpg'},{pair:['fot-tin-open.jpg','fot-cards.jpg']}]},
+ {id:'the-hesitation-we-call-a-path',title:'The Hesitation We Call a Path',year:'2026',cover:'hesitation-cover.jpg',category:'Category to be added',
+  text:['Project description to be added.'],
+  blocks:[{img:'hesitation-cover.jpg'},{meta:1}]}
+];
+/* ========================================================= */
+
+const A=f=>'assets/'+f;
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function workView(){
+  return `<section class="view grid">${PROJECTS.map(p=>`<a class="card rev" href="#${p.id}"><div class="thumb"><img src="${A(p.cover)}" alt="${esc(p.title)}" loading="lazy"></div><div class="cap"><span>${esc(p.title)}</span><span>${esc(p.year)}</span></div></a>`).join('')}</section>`;
+}
+function blockHtml(b,p){
+  if(b.pair) return `<div class="blk pair rev">${b.pair.map(f=>`<div><img src="${A(f)}" alt="" loading="lazy"></div>`).join('')}</div>`;
+  if(b.img) return `<div class="blk rev"><img src="${A(b.img)}" alt="" loading="lazy"></div>`;
+  if(b.video) return `<div class="blk rev"><video src="${A(b.video)}" poster="${A(b.poster||'')}" autoplay muted loop playsinline preload="metadata"></video></div>`;
+  if(b.banner) return `<div class="blk banner rev">${esc(b.banner)}</div>`;
+  if(b.carousel) return `<div class="blk car rev" data-i="0"><div class="tr">${b.carousel.map(f=>`<img src="${A(f)}" alt="" loading="lazy">`).join('')}</div><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="dots">1 / ${b.carousel.length}</div></div>`;
+  if(b.meta) return `<div class="meta rev"><div><h1>${esc(p.title)}</h1><div class="cat">${esc(p.category)}</div></div><div class="txt">${p.text.map(t=>`<p>${esc(t)}</p>`).join('')}</div></div>`;
+  if(b.demo) return demoHtml();
+  return '';
+}
+function projectView(p){
+  const i=PROJECTS.indexOf(p), n=PROJECTS[(i+1)%PROJECTS.length];
+  return `<article class="view">${p.blocks.map(b=>blockHtml(b,p)).join('')}
+  <div class="next"><span>Next project</span><a href="#${n.id}">${esc(n.title)} →</a></div></article>`;
+}
+function aboutView(){
+  const ig=SITE.instagram?`<dt>Instagram</dt><dd><a href="https://instagram.com/${esc(SITE.instagram)}">@${esc(SITE.instagram)}</a></dd>`:'';
+  return `<section class="view about"><p class="big">${esc(SITE.intro)}</p><dl>
+  <div><dt>Email</dt><dd><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></dd></div>
+  ${ig?`<div>${ig}</div>`:''}<div><dt>Based in</dt><dd>${esc(SITE.location)}</dd></div>
+  <div><dt>Selected work</dt><dd>${PROJECTS.map(p=>`<a href="#${p.id}">${esc(p.title)}</a>`).join('<br>')}</dd></div></dl></section>`;
+}
+
+/* ---------- The Form of Traces: keyboard demo ---------- */
+const W='stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+const S4='M20 3 C21.5 14 26 18.5 37 20 C26 21.5 21.5 26 20 37 C18.5 26 14 21.5 3 20 C14 18.5 18.5 14 20 3Z';
+const star4=(f,s)=>`<path class="${f?'f':''}" d="${S4}" transform="translate(20 20) scale(${s}) translate(-20 -20)" ${W} ${f?'fill="#fff"':''}/>`;
+const dot=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" ${W} stroke-width="1.8"/>`;
+function burst(n,ro,ri){let d='';for(let i=0;i<2*n;i++){const a=Math.PI*i/n-Math.PI/2,r=i%2?ri:ro;d+=(i?'L':'M')+(20+r*Math.cos(a)).toFixed(2)+' '+(20+r*Math.sin(a)).toFixed(2)}return `<path class="f" d="${d}Z" ${W} stroke-width="1" fill="#fff"/>`}
+const striped=()=>`<circle cx="20" cy="20" r="12" ${W}/><line x1="15" y1="10.5" x2="15" y2="29.5" ${W}/><line x1="20" y1="8.5" x2="20" y2="31.5" ${W}/><line x1="25" y1="10.5" x2="25" y2="29.5" ${W}/>`;
+const SYM={Q:star4(0,.75),W:star4(1,.75),E:star4(0,.55),R:striped(),T:`<circle class="f" cx="20" cy="20" r="12" fill="#fff" ${W} stroke-width="1"/>`,
+A:dot(20,20,5),S:`<circle cx="20" cy="20" r="11" ${W}/>`,D:`<path d="M20 8 L32 20 L20 32 L8 20Z" ${W}/>`,F:`<line x1="4" y1="20" x2="36" y2="20" ${W}/>`,
+G:`<path d="M7 22 C11 14 15 14 20 20 S29 26 33 18" ${W}/>`,Z:`<path d="M20 15 L25 24 L15 24Z" ${W} stroke-width="1.8"/>`,X:`<path d="M15 16 L25 16 L20 25Z" ${W} stroke-width="1.8"/>`,
+C:`<circle class="f" cx="19" cy="18" r="11" fill="#fff" ${W} stroke-width="1"/>`+dot(21,31,3.5),V:`<circle cx="19" cy="18" r="10" ${W}/>`+dot(23,30,3.5),
+Y:star4(1,.75)+dot(27,30,3.5),U:star4(0,.75)+dot(27,30,3.5),I:burst(12,13,6.5),O:burst(8,13,6),P:burst(8,13,3.2),
+H:`<rect x="10" y="10" width="20" height="20" ${W}/><rect class="f" x="15.5" y="15.5" width="9" height="9" fill="#fff" ${W} stroke-width="1"/>`,
+J:`<rect class="f" x="16" y="15" width="8" height="8" fill="#fff" ${W} stroke-width="1"/>`+dot(20,30,3),K:`<rect x="15.5" y="15.5" width="9" height="9" ${W} stroke-width="1.9"/>`,
+L:`<line x1="20" y1="10" x2="20" y2="30" ${W}/>`,B:striped()+dot(27,31,3.5),
+N:`<path class="f" d="M20 9 L25 14 L20 19 L15 14Z M20 21 L25 26 L20 31 L15 26Z M9 20 L14 15 L19 20 L14 25Z M31 20 L26 15 L21 20 L26 25Z" fill="#fff" ${W} stroke-width="1"/>`,
+M:`<path d="M5 18 C8 13 11 13 14 18 S20 23 23 18 S29 13 32 18 S36 21 37 19" ${W}/>`};
+const JM={Q:'ㅂ',W:'ㅈ',E:'ㄷ',R:'ㄱ',T:'ㅅ',A:'ㅁ',S:'ㄴ',D:'ㅇ',F:'ㄹ',G:'ㅎ',Z:'ㅋ',X:'ㅌ',C:'ㅊ',V:'ㅍ',Y:'ㅛ',U:'ㅕ',I:'ㅑ',O:'ㅐ',P:'ㅔ',H:'ㅗ',J:'ㅓ',K:'ㅏ',L:'ㅣ',B:'ㅠ',N:'ㅜ',M:'ㅡ'};
+const SH={Q:'ㅃ',W:'ㅉ',E:'ㄸ',R:'ㄲ',T:'ㅆ',O:'ㅒ',P:'ㅖ'};
+const POS={Q:[0,0],W:[144,0],E:[289,0],R:[434,0],T:[579,0],A:[69,170],S:[214,170],D:[359,170],F:[504,170],G:[649,170],Z:[279,339],X:[424,339],C:[569,339],V:[714,339],
+Y:[1052,0],U:[1198,0],I:[1344,0],O:[1490,0],P:[1636,0],H:[1198,169],J:[1344,169],K:[1490,169],L:[1636,169],B:[1344,338],N:[1490,338],M:[1636,338]};
+function demoHtml(){
+  const keys=Object.keys(POS).map(k=>`<button class="k" data-k="${k}" style="left:${POS[k][0]}px;top:${POS[k][1]}px" aria-label="${k} ${JM[k]}"><span class="l">${k}</span><svg viewBox="0 0 40 40" aria-hidden="true">${SYM[k]}</svg><span class="j">${JM[k]}</span></button>`).join('');
+  return `<section class="blk demo rev" id="demo"><div class="top"><span><b>Try it</b> — type in Korean or English on your keyboard, or tap the keys</span><span>Backspace to erase · Esc to clear</span></div>
+  <div class="steps"><div>01. INPUT<output id="o1"></output></div><div>02. BREAKDOWN<output id="o2"></output></div><div>03. MAPPING<output id="o3"></output></div><div>04. VISUAL TRACE<output id="o4"></output></div></div>
+  <div class="kbw"><div class="kb">${keys}</div></div><div class="trace" id="tr" aria-live="polite"></div>
+  <div class="hint">Each key pairs a letter, a jamo and a mark. A word becomes a line of traces.</div></section>`;
+}
+const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',JUNG='ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ',
+JONG=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const VC={'ㅗㅏ':'ㅘ','ㅗㅐ':'ㅙ','ㅗㅣ':'ㅚ','ㅜㅓ':'ㅝ','ㅜㅔ':'ㅞ','ㅜㅣ':'ㅟ','ㅡㅣ':'ㅢ'};
+const FC={'ㄱㅅ':'ㄳ','ㄴㅈ':'ㄵ','ㄴㅎ':'ㄶ','ㄹㄱ':'ㄺ','ㄹㅁ':'ㄻ','ㄹㅂ':'ㄼ','ㄹㅅ':'ㄽ','ㄹㅌ':'ㄾ','ㄹㅍ':'ㄿ','ㄹㅎ':'ㅀ','ㅂㅅ':'ㅄ'};
+const FS=Object.fromEntries(Object.entries(FC).map(([a,b])=>[b,[a[0],a[1]]]));
+function compose(js){
+  const out=[];let c=null;
+  const flush=()=>{if(!c)return;if(c.c&&c.v)out.push(String.fromCharCode(0xAC00+(CHO.indexOf(c.c)*21+JUNG.indexOf(c.v))*28+JONG.indexOf(c.f||'')));else out.push((c.c||'')+(c.v||''));c=null};
+  for(const j of js){
+    if(j===' '){flush();out.push(' ');continue}
+    const isV=JUNG.includes(j);
+    if(!isV){
+      if(c&&c.c&&c.v&&!c.f&&JONG.includes(j))c.f=j;
+      else if(c&&c.f&&FC[c.f+j])c.f=FC[c.f+j];
+      else{flush();c={c:j}}
+    }else{
+      if(c&&c.c&&!c.v)c.v=j;
+      else if(c&&c.v&&!c.f&&VC[c.v+j])c.v=VC[c.v+j];
+      else if(c&&c.f){let nc=c.f;if(FS[c.f]){c.f=FS[c.f][0];nc=FS[nc][1]}else c.f=null;flush();c={c:nc,v:j}}
+      else{flush();c={v:j}}
+    }
+  }
+  flush();return out.join('');
+}
+let typed=[];
+function renderDemo(){
+  const o=id=>document.getElementById(id);if(!o('o1'))return;
+  o('o1').textContent=compose(typed.map(t=>t.j));
+  o('o2').textContent=typed.map(t=>t.j).join('');
+  o('o3').textContent=typed.map(t=>t.k===' '?' ':(t.s?t.k:t.k.toLowerCase())).join('');
+  const sv=t=>t.k===' '?'<i></i>':`<svg viewBox="0 0 40 40">${SYM[t.k]}</svg>`;
+  o('o4').innerHTML=typed.slice(-24).map(sv).join('');
+  o('tr').innerHTML=typed.map(sv).join('');
+}
+function press(k,shift){
+  if(k===' '){typed.push({k:' ',j:' '});renderDemo();return}
+  if(!JM[k])return;
+  typed.push({k,j:(shift&&SH[k])||JM[k],s:shift&&!!SH[k]});
+  if(typed.length>80)typed.shift();
+  renderDemo();
+  const el=document.querySelector(`.k[data-k="${k}"]`);if(el){el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),260)}
+}
+let demoVisible=false;
+const demoObs=new IntersectionObserver(es=>{for(const e of es)demoVisible=e.isIntersecting},{threshold:.25});
+function fitKb(){const w=document.querySelector('.kbw');if(!w)return;const s=Math.max(w.clientWidth/1842,.36);w.style.height=(482*s+(s>w.clientWidth/1842?8:0))+'px';const k=w.firstElementChild;k.style.transform=`scale(${s})`;let sp=w.querySelector('.sp');if(!sp){sp=document.createElement('div');sp.className='sp';sp.style.cssText='height:1px';w.appendChild(sp)}sp.style.width=(1842*s)+'px'}
+const kbRO=new ResizeObserver(fitKb);
+window.addEventListener('keydown',e=>{
+  if(!demoVisible||e.metaKey||e.ctrlKey||e.altKey)return;
+  if(e.code==='Backspace'){typed.pop();renderDemo();e.preventDefault();return}
+  if(e.code==='Escape'){typed=[];renderDemo();return}
+  if(e.code==='Space'){press(' ');e.preventDefault();return}
+  const m=/^Key([A-Z])$/.exec(e.code);if(m){press(m[1],e.shiftKey);e.preventDefault()}
+});
+
+/* ---------- router & effects ---------- */
+const revObs=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}},{rootMargin:'0px 0px -6% 0px'});
+function route(){
+  const h=location.hash.slice(1);
+  const p=PROJECTS.find(x=>x.id===h);
+  app.innerHTML=h==='about'?aboutView():p?projectView(p):workView();
+  document.title=p?`${p.title} — ${SITE.name}`:h==='about'?`About — ${SITE.name}`:SITE.name;
+  document.getElementById('nw').classList.toggle('on',!(h==='about'));
+  document.getElementById('na').classList.toggle('on',h==='about');
+  window.scrollTo(0,0);
+  app.querySelectorAll('.rev').forEach(el=>revObs.observe(el));
+  app.querySelectorAll('.car').forEach(c=>{
+    const n=c.querySelectorAll('.tr img').length;
+    const go=d=>{let i=(+c.dataset.i+d+n)%n;c.dataset.i=i;c.firstElementChild.style.transform=`translateX(${-100*i}%)`;c.querySelector('.dots').textContent=`${i+1} / ${n}`};
+    c.querySelector('.p').onclick=()=>go(-1);c.querySelector('.n').onclick=()=>go(1);
+  });
+  const d=document.getElementById('demo');
+  if(d){typed=[];demoObs.disconnect();demoObs.observe(d);kbRO.disconnect();kbRO.observe(d.querySelector('.kbw'));fitKb();
+    d.querySelectorAll('.k').forEach(b=>b.addEventListener('click',()=>press(b.dataset.k,false)));}
+}
+window.addEventListener('hashchange',route);
+route();
+}
+</script>
+</body>
+</html>
